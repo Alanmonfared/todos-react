@@ -93,6 +93,19 @@ function App() {
   }
 
 
+  const handleTodoCompleted = (id) => {
+    const updatedTodos = [...todo].map((todos) => {
+      if (todos.id === id) {
+          todos.completed = !todos.completed
+        }
+        return todos;
+    })
+      setTodo(updatedTodos);
+}
+ 
+
+
+
   const handleTodoDeleted = (deletedTodo) => {
     setTodo(todo.filter(todo => todo.id !== deletedTodo.id))   //* Kollar först att todons id inter är samma id som deletedTodons id. Gör så att man kan ta bort en todo
     showCreateForm(); //* Sätter vyn till create 
@@ -163,6 +176,7 @@ function App() {
           onTodoSelected={selectTodo}
           setStatus={setStatus}
           filteredTodos={filteredTodos}
+          onComplete={handleTodoCompleted}
         />
       </aside>
       <section>

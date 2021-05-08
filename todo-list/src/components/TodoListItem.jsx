@@ -22,19 +22,23 @@ const TodoListItem = (props) => {
         spanCheckbox += " todo-list-item__checkbox--completed";
     }
 
-    const handleTodoCompleted = async () => {  //* En hanterare för att kunna completa och uncompleta en todo
-        if (spanCheckbox) {
-            const onComplete = {
-                ...todo,  //* Spreadar todoerna  
-                completed: todo.completed = !todo.completed
-            }
-            const updatedTodo = await todoApiService.updatedTodo(todo.id, onComplete);
-            setTodos(updatedTodo); //* Uppdaterar todon completed
+       
+const handleCompletedTodo = async () => {
+    if(onClick) {
+        const todoCompletedInfo = {
+            ...todo,
+            completed: todo.completed = !todo.completed
         }
+        
+        const updatedTodo = await todoApiService.updatedTodo(todo.id, todoCompletedInfo);
+        onComplete(updatedTodo);
     }
+ 
+}
+
     return (
         <li className={className} onClick={handleClick}>
-            <span onClick={handleTodoCompleted} className={spanCheckbox} >
+            <span onClick={handleCompletedTodo} className={spanCheckbox} >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="24px"

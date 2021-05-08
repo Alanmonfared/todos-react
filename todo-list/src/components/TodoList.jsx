@@ -23,8 +23,7 @@ const TodoList = (props) => {
                         key={todo.id}
                         todo={todo}
                         isSelected={todo === selectedTodo}
-                        filteredTodos={filteredTodos}
-                        sortedTodos={sortedTodos}
+                        onComplete={onComplete}
                     />
                 ))}
             </ul>
